@@ -28,6 +28,19 @@ function onMessageSendHandler(event) {
       Office.context.mailbox.item.getAttachmentsAsync(
         { asyncContext: event },
         getAttachmentsCallback);
+      // const start = new Date();
+      // const end = new Date();
+      // end.setHours(start.getHours() + 1);
+      // Office.context.mailbox.displayNewAppointmentFormAsync({
+      //   requiredAttendees: ["bob@contoso.com"],
+      //   optionalAttendees: ["sam@contoso.com"],
+      //   start: start,
+      //   end: end,
+      //   location: "Home",
+      //   subject: "meeting",
+      //   resources: ["projector@contoso.com"],
+      //   body: "Hello World!"
+      // });
     } else {
       event.completed({ allowEvent: true });
     }
@@ -59,7 +72,7 @@ function onMessageSendHandler(event) {
           return;
         }
       }
-  
+      
       event.completed({ allowEvent: false, errorMessage: "abra kadabra?" });
     } else {
       event.completed({ allowEvent: false, errorMessage: "Hocus pocus?" });

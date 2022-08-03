@@ -18,8 +18,33 @@ export async function run() {
    * Insert your Outlook code here
    */
   // Get a reference to the current message
-  const item = Office.context.mailbox.item;
+  // const item = Office.context.mailbox.item
+  Office.context.mailbox.item.body.getAsync(
+    "text",
+    { asyncContext: "This is passed to the callback" },
+    function callback(result) {
+        document.getElementById("item-subject").innerHTML = "<b>Subject:</b> <br/>" + result.value;
+        
+        // Put in model to use the result.value
 
+        //
+        const start = new Date();
+        const end = new Date();
+        end.setHours(start.getHours() + 1);
+
+        Office.context.mailbox.displayNewAppointmentForm({
+          requiredAttendees: ["bob@contoso.com"],
+          optionalAttendees: ["sam@contoso.com"],
+          start: start,
+          end: end,
+          location: "Home",
+          subject: "meeting",
+          resources: ["projector@contoso.com"],
+          body: result.value
+        });
+    });
+  
   // Write message property value to the task pane
-  document.getElementById("item-subject").innerHTML = "<b>Subject:</b> <br/>" + item.subject;
+  // document.getElementById("item-subject").innerHTML = "<b>Subject:</b> <br/>" + item.body;
+  // document.body.getElementsByClassName("foo");
 }
