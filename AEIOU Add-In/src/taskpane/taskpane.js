@@ -48,3 +48,28 @@ export async function run() {
   // document.getElementById("item-subject").innerHTML = "<b>Subject:</b> <br/>" + item.body;
   // document.body.getElementsByClassName("foo");
 }
+
+
+var input = result.value
+
+const spawn = require('child_process').spawn;
+const script = spawn('python', ['./ml.py', input.toString()]);
+
+var datatoSend 
+
+script.stdout.on('data', (data) => {
+  datatoSend = data.toString();
+});
+
+
+// one of the ways to pass parameters into the py fiel
+// var data = result.value
+// script.stdin.write(data);
+// // End data write
+// script.stdin.end();
+
+script.on('exit', (code) => {
+  console.log("Process quit with code : " + code);
+  res.send(datatoSend);
+});
+
