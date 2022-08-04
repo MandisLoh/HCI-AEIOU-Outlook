@@ -25,29 +25,32 @@ export async function run() {
     function callback(result) {
         document.getElementById("item-subject").innerHTML = "<b>Subject:</b> <br/>" + result.value;
         
+
         // Put in model to use the result.value
-        // var input = result.value
+        var input = result.value
+        
+        const spawn = require('child_process').spawn;
+        const script = spawn('py', ['ml.py', input]);
+        console.log(input)
 
-        // const spawn = require('child_process').spawn;
-        // const script = spawn('python', ['./ml.py', input.toString()]);
-
-        // var datatoSend 
-
-        // script.stdout.on('data', (data) => {
-        //   datatoSend = data.toString();
-        // });
-
+        script.stdout.on('data', (data) => {
+          // datatoSend = data.toString();
+          console.log(`${data}`)
+        });
+        script.stderr.on('data', (data) => {
+          // As said before, convert the Uint8Array to a readable string.
+          console.error(`stderr: ${data}`);
+        });
 
         // // one of the ways to pass parameters into the py file if the other one doesnt work
-        // // var data = result.value
-        // // script.stdin.write(data);
-        // // // End data write
-        // // script.stdin.end();
+        // script.stdin.write(data);
+        // // End data write
+        // script.stdin.end();
 
-        // script.on('exit', (code) => {
-        //   console.log("Process quit with code : " + code);
-        //   res.send(datatoSend);
-        // });
+        script.on('close', (code) => {
+          console.log("Process quit with code : " + code);
+          // res.send(datatoSend);
+        });
 
         //
         const start = new Date();
