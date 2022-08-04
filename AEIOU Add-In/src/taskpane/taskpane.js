@@ -26,28 +26,28 @@ export async function run() {
         document.getElementById("item-subject").innerHTML = "<b>Subject:</b> <br/>" + result.value;
         
         // Put in model to use the result.value
-        var input = result.value
+        // var input = result.value
 
-        const spawn = require('child_process').spawn;
-        const script = spawn('python', ['./ml.py', input.toString()]);
+        // const spawn = require('child_process').spawn;
+        // const script = spawn('python', ['./ml.py', input.toString()]);
 
-        var datatoSend 
+        // var datatoSend 
 
-        script.stdout.on('data', (data) => {
-          datatoSend = data.toString();
-        });
+        // script.stdout.on('data', (data) => {
+        //   datatoSend = data.toString();
+        // });
 
 
-        // one of the ways to pass parameters into the py file if the other one doesnt work
-        // var data = result.value
-        // script.stdin.write(data);
-        // // End data write
-        // script.stdin.end();
+        // // one of the ways to pass parameters into the py file if the other one doesnt work
+        // // var data = result.value
+        // // script.stdin.write(data);
+        // // // End data write
+        // // script.stdin.end();
 
-        script.on('exit', (code) => {
-          console.log("Process quit with code : " + code);
-          res.send(datatoSend);
-        });
+        // script.on('exit', (code) => {
+        //   console.log("Process quit with code : " + code);
+        //   res.send(datatoSend);
+        // });
 
         //
         const start = new Date();

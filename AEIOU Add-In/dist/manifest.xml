@@ -96,23 +96,53 @@
           <!-- Enable launching the add-in on the included event. -->
           <ExtensionPoint xsi:type="LaunchEvent">
             <LaunchEvents>
-              <LaunchEvent Type="OnNewMessageCompose" FunctionName="onMessageComposeHandler"/>
+              <LaunchEvent Type="OnNewMessageCompose" FunctionName="realTimeDetection"/>
               <LaunchEvent Type="OnNewAppointmentOrganizer" FunctionName="onAppointmentComposeHandler"/>
               <LaunchEvent Type="OnMessageSend" FunctionName="onMessageSendHandler" SendMode="PromptUser" />
             </LaunchEvents>
             <!-- Identifies the runtime to be used (also referenced by the Runtime element). -->
             <SourceLocation resid="WebViewRuntime.Url"/>
           </ExtensionPoint>
-          <ExtensionPoint xsi:type="DetectedEntity">
-            <Label resid="contextLabel" />
-            <!--If you opt to include RequestedHeight, it must be between 140px to 450px, inclusive.-->
-            <!--<RequestedHeight>360</RequestedHeight>-->
-            <SourceLocation resid="detectedEntityURL" />
-            <Rule xsi:type="RuleCollection" Mode="And">
-              <Rule xsi:type="ItemIs" ItemType="Message" />
-              <Rule xsi:type="ItemHasKnownEntity" EntityType="meetingSuggestions" Highlight="all" />
-              <DisableEntityHighlighting>false</DisableEntityHighlighting>
-            </Rule>
+          <!---->
+          
+          
+          <!-- Message Compose -->
+          <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="msgComposeCmdGroup">
+                <Label resid="ComposeLabel"/>
+                <Control xsi:type="Button" id="msgComposeInsertGist">
+                  <Label resid="ComposeTaskpaneButton.Label"/>
+                  <Supertip>
+                    <Title resid="ComposeTaskpaneButton.Title"/>
+                    <Description resid="ComposeTaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="Taskpane.Url"/>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="msgComposeInsertDefaultGist">
+                  <Label resid="ComposeFunctionButton.Label"/>
+                  <Supertip>
+                    <Title resid="ComposeFunctionButton.Title"/>
+                    <Description resid="ComposeFunctionButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>insertDefaultGist</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
           </ExtensionPoint>
         </DesktopFormFactor>
       </Host>
@@ -132,12 +162,24 @@
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GroupLabel" DefaultValue="Contoso Add-in"/>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Taskpane"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Run"/>
         <bt:String id="ActionButton.Label" DefaultValue="Perform an action"/>
       </bt:ShortStrings>
       <bt:LongStrings>
         <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Opens a pane displaying all available properties."/>
         <bt:String id="ActionButton.Tooltip" DefaultValue="Perform an action when clicked."/>
+      </bt:LongStrings>
+      <!--Message Compose-->
+      <bt:ShortStrings>
+        <bt:String id="ComposeLabel" DefaultValue="Git the gist"/>
+        <bt:String id="ComposeTaskpaneButton.Label" DefaultValue="Insert gist"/>
+        <bt:String id="ComposeTaskpaneButton.Title" DefaultValue="Insert gist"/>
+        <bt:String id="ComposeFunctionButton.Label" DefaultValue="Insert default gist"/>
+        <bt:String id="ComposeFunctionButton.Title" DefaultValue="Insert default gist"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="ComposeTaskpaneButton.Tooltip" DefaultValue="Displays a list of your gists and allows you to insert their contents into the current message."/>
+        <bt:String id="ComposeFunctionButton.Tooltip" DefaultValue="Inserts the content of the gist you mark as default into the current message."/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>

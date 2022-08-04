@@ -3,6 +3,21 @@
 * See LICENSE in the project root for license information.
 */
 
+function realTimeDetection() {
+  //input = Office.context.mailbox.item.body;
+  Office.context.mailbox.item.body.getAsync(
+    "text",
+    { asyncContext: "This is passed to the callback" },
+    function callback(result) {
+      //Do something with the result
+      const input = result.value;
+      input.addEventListener("keydown", (e) => {
+    //When user presses enter and event detected
+    onMessageSendHandler(e);
+  })});
+}
+
+
 function onMessageSendHandler(event) {
     Office.context.mailbox.item.body.getAsync(
       "text",
@@ -28,19 +43,6 @@ function onMessageSendHandler(event) {
       Office.context.mailbox.item.getAttachmentsAsync(
         { asyncContext: event },
         getAttachmentsCallback);
-      // const start = new Date();
-      // const end = new Date();
-      // end.setHours(start.getHours() + 1);
-      // Office.context.mailbox.displayNewAppointmentFormAsync({
-      //   requiredAttendees: ["bob@contoso.com"],
-      //   optionalAttendees: ["sam@contoso.com"],
-      //   start: start,
-      //   end: end,
-      //   location: "Home",
-      //   subject: "meeting",
-      //   resources: ["projector@contoso.com"],
-      //   body: "Hello World!"
-      // });
     } else {
       event.completed({ allowEvent: true });
     }
@@ -81,6 +83,8 @@ function onMessageSendHandler(event) {
   
   // 1st parameter: FunctionName of LaunchEvent in the manifest; 2nd parameter: Its implementation in this .js file.
   Office.actions.associate("onMessageSendHandler", onMessageSendHandler);
+  Office.actions.associate("realTimeDetection", realTimeDetection);
+
 
 // function onMessageComposeHandler(event) {
 //     setSubject(event);
