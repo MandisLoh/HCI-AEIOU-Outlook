@@ -22,7 +22,7 @@ pca = PCA(n_components = 1) # put a reasonable number from graph (70%-90%)
 count_vect_pca = pca.fit_transform(count_vect_dense)
 prediction = model.predict(count_vect_pca)
 
-if (prediction==2):
+if (prediction==1):
     prediction = 1
 else:
     prediction = 0

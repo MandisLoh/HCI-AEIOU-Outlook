@@ -23,8 +23,24 @@ export async function run() {
     { asyncContext: "This is passed to the callback" },
     function callback(result) {
       //Do something with the result
-      const input = result.value;
-      console.log("Selected text:" + input);
-    })}
+      // const input = result.value;
+      // console.log("Selected text:" + input)};
+      
+      // function realTimeDetection() {
+        //input = Office.context.mailbox.item.body;
+        Office.context.mailbox.item.body.getAsync(
+          "text",
+          { asyncContext: "This is passed to the callback" },
+          function callback(result) {
+            //Do something with the result
+            const input = result.value;
+            input.addEventListener("keydown", (e) => {
+          //When user presses enter and event detected
+          console.log(e.target.value);
+          }, false);
+            input = '123';
+            element.dispatchEvent(new Event("keyup"));
+          }
+    )})}
 
 
