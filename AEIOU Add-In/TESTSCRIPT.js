@@ -1,7 +1,7 @@
-var input = 'hello can we meet on 23 july at 1 pm thanks'
+var input = 'your exam results are out'
         
 const spawn = require('child_process').spawn;
-const script = spawn('py', ['ml copy.py', input]);
+const script = spawn('py', ['ml copy 2.py', input]);
 console.log(input)
 
 script.stdout.on('data', (data) => {
