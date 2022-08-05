@@ -29,10 +29,13 @@
     </Form>
   </FormSettings>
   <Permissions>ReadWriteItem</Permissions>
-  <Rule xsi:type="RuleCollection" Mode="Or">
-    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
-  </Rule>
+  <Rule xsi:type="RuleCollection" Mode="And">
+      <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
+      <Rule xsi:type="ItemHasKnownEntity" EntityType="MeetingSuggestion"/>
+    </Rule>
   <DisableEntityHighlighting>false</DisableEntityHighlighting>
+
+
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
     <Requirements>
@@ -52,6 +55,17 @@
           </Runtime>
         </Runtimes>
         <DesktopFormFactor>
+
+        <!-- DetectedEntity -->
+        <ExtensionPoint xsi:type="DetectedEntity">
+          <Label resid="contextLabel" />
+          <SourceLocation resid="detectedEntityURL" />
+          <Rule xsi:type="RuleCollection" Mode="And">
+            <Rule xsi:type="ItemIs" ItemType="Message" />
+            <Rule xsi:type="ItemHasKnownEntity" EntityType="MeetingSuggestion"/>
+          </Rule>
+          </ExtensionPoint>
+
           <FunctionFile resid="Commands.Url" />
           <ExtensionPoint xsi:type="MessageReadCommandSurface">
             <OfficeTab id="TabDefault">
@@ -104,7 +118,6 @@
             <!-- Identifies the runtime to be used (also referenced by the Runtime element). -->
             <SourceLocation resid="WebViewRuntime.Url"/>
           </ExtensionPoint>
-          <!---->
         </DesktopFormFactor>
       </Host>
     </Hosts>
@@ -118,6 +131,7 @@
         <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html" />
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html" />
         <bt:Url id="WebViewRuntime.Url" DefaultValue="https://localhost:3000/commands.html" />
+        <bt:Url id="detectedEntityURL" DefaultValue="https://localhost:3000/index.html"/>
         <!-- Entry needed for Outlook Desktop. -->
         <bt:Url id="JSRuntime.Url" DefaultValue="https://localhost:3000/launchevent.js" />
       </bt:Urls>
@@ -125,6 +139,7 @@
         <bt:String id="GroupLabel" DefaultValue="Contoso Add-in"/>
         <bt:String id="TaskpaneButton.Label" DefaultValue="Show Run"/>
         <bt:String id="ActionButton.Label" DefaultValue="Perform an action"/>
+        <bt:String id="contextLabel" DefaultValue="Meeting Detected"/>
       </bt:ShortStrings>
       <bt:LongStrings>
         <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Opens a pane displaying all available properties."/>
