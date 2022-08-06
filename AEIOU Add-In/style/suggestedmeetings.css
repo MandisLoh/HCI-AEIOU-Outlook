@@ -1,0 +1,456 @@
+#backBtn {
+    cursor: pointer;
+    display: none;
+    height: 32px;
+    left: 12px;
+    position: absolute;
+    top: 8px;
+    width: 32px;
+    z-index: 10;
+}
+
+#backLabel {
+    font-family: 'Segoe UI', 'Segoe WP';
+    display: block;
+    font-size: 11pt;
+    margin-left: 32px;
+    margin-right: 10px;
+    margin-top: 3px;
+    color: #5F77C5;
+    font-weight: bold;
+}
+
+
+/* Fabric start */
+.ms-font-s {
+    color: #333333;
+    font-family: "Segoe UI Web Regular", "Segoe UI", "Segoe WP", Tahoma, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.ms-font-m {
+    color: #333333;
+    font-family: "Segoe UI Web Regular", "Segoe UI", "Segoe WP", Tahoma, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.ms-font-weight-regular, .ms-fwt-r, .ms-font-weight-regular-hover:hover, .ms-fwt-r-h:hover {
+    font-family: "Segoe UI Web Regular", "Segoe UI", "Segoe WP", Tahoma, Arial, sans-serif;
+}
+
+.ms-font-color-neutralPrimary, .ms-fcl-np, .ms-font-color-neutralPrimary-hover:hover, .ms-fcl-np-h:hover {
+    color: #333333;
+}
+
+.ms-font-color-neutralSecondary, .ms-fcl-ns, .ms-font-color-neutralSecondary-hover:hover, .ms-fcl-ns-h:hover {
+    color: #666666;
+}
+
+.ms-font-weight-semibold, .ms-fwt-sb, .ms-font-weight-semibold-hover:hover, .ms-fwt-sb-h:hover {
+    font-family: "Segoe UI Web Semibold", "Segoe UI Semibold", "Segoe WP Semibold", "Segoe UI", "Segoe WP", Tahoma, Arial, sans-serif;
+}
+
+.ms-border-color-neutralLight, .ms-bcl-nl, .ms-border-color-neutralLight-hover:hover, .ms-bcl-nl-h:hover {
+    border-color: #eaeaea;
+}
+
+.ms-Link {
+    font-family: "Segoe UI Web Regular", "Segoe UI", "Segoe WP", Tahoma, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: #0078d7;
+    text-decoration: none;
+}
+
+.ms-Link--hero.ms-Link {
+    font-family: "Segoe UI Web Semilight", "Segoe UI Semilight", "Segoe WP Semilight", "Segoe UI", "Segoe WP", Tahoma, Arial, sans-serif;
+    padding: 4px 35px 6px 10px;
+}
+
+
+.ms-Button {
+    color: #333333;
+    font-family: "Segoe UI Web Regular", "Segoe UI", "Segoe WP", Tahoma, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    background-color: #f4f4f4;
+    border: 1px solid #f4f4f4;
+    cursor: pointer;
+    display: inline-block;
+    height: 30px;
+    min-width: 80px;
+    outline: none;
+    padding: 4px 20px 6px 20px;
+}
+
+.ms-Button--primary.ms-Button {
+    background-color: #0078d7;
+    border-color: #0078d7;
+}
+.ms-font-color-primary
+{
+  color: #0078d7;
+}
+
+[class^='ms-Icon--'], [class*=' ms-Icon--'] {
+    display: inline-block;
+    line-height: 1;
+}
+
+    [class^='ms-Icon--']::before, [class*=' ms-Icon--']::before {
+        font-family: "Office365Icons";
+        font-style: normal;
+        font-weight: normal;
+        speak: none;
+        display: inline-block;
+        text-decoration: inherit;
+        text-align: center;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+    }
+
+.ms-Icon--event::before {
+    content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAeCAYAAADdGWXmAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNWWFMmUAAADpSURBVEhL7VbRDYUgDHQnB3AAB3ABxmAA/52CMRjAAVjBJfq85pUAavTF8vW45BS4tmeAmHZElHFZFur7nqy1+zTXnhB5yEedUssm4DAMHAyW2hNK7lk+P7z3tK7rPjwGYx36Ha/yRce4m+eZBWMML5TBWE/XrniVL2P4xGK1zaDHYuM4slie2a9m5QVJ9awY9t05xwLe27ZF7Y74SMSnwFmJfjCbpkkOk0IIPBftCRGPPAB10l06mNXkn5h9b4865PfXzF6hmamgmamgmamgmang1AxdkTSUmpRuKzOrTTZDy3YmatM5Rx+3AjDQDmajPAAAAABJRU5ErkJggg==")
+}
+
+.ms-TextField {
+    color: #333333;
+    font-family: "Segoe UI Web Regular", "Segoe UI", "Segoe WP", Tahoma, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.ms-TextField--placeholder.ms-TextField {
+    position: relative;
+}
+
+.ms-Label {
+    color: #333333;
+    font-family: "Segoe UI Web Regular", "Segoe UI", "Segoe WP", Tahoma, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    padding-bottom: 7px;
+    padding-top: 7px;
+}
+
+.ms-TextField--placeholder.ms-TextField .ms-Label {
+    position: absolute;
+    top: -2px;
+    padding-left: 8px;
+    font-family: "Segoe UI Web Semilight", "Segoe UI Semilight", "Segoe WP Semilight", "Segoe UI", "Segoe WP", Tahoma, Arial, sans-serif;
+    font-size: 14px;
+    color: #666666;
+}
+
+.ms-TextField .ms-TextField-field {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    border: 1px solid #c8c8c8;
+    border-radius: 0;
+    font-family: "Segoe UI Web Semilight", "Segoe UI Semilight", "Segoe WP Semilight", "Segoe UI", "Segoe WP", Tahoma, Arial, sans-serif;
+    font-size: 14px;
+    color: #333333;
+    height: 30px;
+    padding: 6px 3px 7px 8px;
+    width: 100%;
+}
+
+.ms-font-color-officeAccent6 {
+  color: #ed7d31;
+}
+
+.ms-TextField .ms-TextField-field:focus {
+    border-color: #0078d7;
+}
+
+/* Fabric END */
+
+
+/* Overrides / Resets */
+.actionsForm {
+    padding: 0;
+    margin: 0;
+}
+
+#frameHost {
+    overflow-y: auto !important;
+}
+
+/* Overrides / Resets END */
+
+.suggmContainer {
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    padding: 0 30px 20px;
+}
+
+    .suggmContainer .buttonBar {
+        padding-top: 9px;
+        border-top: solid 1px #F1F1F1;
+        white-space: nowrap;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .suggmContainer .suggmCol {
+        white-space: normal;
+        display: inline-block;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        text-align: left;
+    }
+
+    .suggmContainer .suggmCol + .suggmCol {
+        text-align: right;
+    }
+
+    .suggmContainer #buttonDiv {
+        width: 60%;
+        max-width: 60%;
+    }
+
+    .suggmContainer #editDetailsDiv {
+        width: 40%;
+        max-width: 40%;
+    }
+
+    .suggmContainer .ms-Button:first-child {
+        color: #fff;
+    }
+
+    .suggmContainer .ms-Button + .ms-Button {
+        color: #212121;
+        margin-left: 5px;
+    }
+
+    .suggmContainer .suggmCol > :nth-child(n) {
+        vertical-align: middle;
+    }
+
+    .suggmContainer h1 {
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        font-weight: 400;
+        font-size: 24px;
+    }
+
+    .suggmContainer h4 {
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        font-weight: 400;
+    }
+
+    .suggmContainer .ms-TextField-field::-webkit-input-placeholder {
+        color: #666;
+    }
+
+    .suggmContainer .ms-TextField-field:-moz-placeholder {
+        color: #666;
+    }
+
+    .suggmContainer .ms-TextField-field::-moz-placeholder {
+        color: #666;
+    }
+
+    .suggmContainer .ms-TextField-field:-ms-input-placeholder {
+        color: #666;
+    }
+
+    .suggmContainer .ms-Icon--event {
+        margin-top: 8px;
+        margin-left: -3px;
+        position: absolute;
+    }
+
+        .suggmContainer .ms-Icon--event::before {
+            font-size: 35px;
+        }
+
+    .suggmContainer .suggmDetail {
+        display: inline-block;
+        vertical-align: top;
+        padding: 3px 0 0 7px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .suggmContainer .suggmRow {
+        height: auto;
+        display: inline-block;
+        width: 100%;
+        padding-left:30px;
+        max-height: 38px;
+        box-sizing: border-box;
+    }
+
+    .suggmContainer .suggmDetails label,
+    .suggmContainer .suggmDetails p,
+    .suggmContainer .suggmDetails input {
+        vertical-align: top;
+        margin: 0;
+    }
+
+    .suggmContainer .suggmDetails label {
+        max-width: 30%;
+        padding: 0 10px 3px 0;
+    }
+
+    .suggmContainer label[for=whoDetails] {
+        padding-bottom: 7px;
+
+    }
+
+    .suggmContainer .suggmDetails + p {
+        margin: 17px 0 27px 0;
+    }
+
+    .suggmContainer input.ms-TextField-field {
+        line-height: 16px;
+    }
+
+    .suggmContainer .input label {
+        max-width: 30%;
+        padding: 0 10px 5px 0;
+    }
+
+    /*adjust last label on center section*/
+    .suggmContainer label[for=whereDetails] {
+        vertical-align: middle;
+    }
+
+    .rowWidth
+    {
+        width: 100%;
+    }
+
+    .floatLeft
+    {
+        float: left;
+    }
+
+    .appHeader
+    {
+        font-size: 24px;
+        margin: 30px 0px 0px 0px;
+    }
+
+    .noTextDecoration
+    {
+        text-decoration: none;
+    }
+
+    .scheduledText
+    {
+        margin-bottom: 30px;
+    }
+
+    .meetingstring
+    {
+        margin: 30px 0px 30px 0px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    #whenDetails
+    {
+        overflow: hidden; 
+        padding-left: 4px;
+        max-height: 38px;
+    }
+
+    #whereDetails
+    {
+        overflow: hidden; 
+        width: 200px;
+    }
+
+    #whoDetails
+    {
+        overflow: hidden;
+        padding-left: 11px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    #conflictDiv
+    {
+        height: 10px; 
+        padding-top: 20px;
+        margin-bottom: 30px;
+    }
+
+    #progressScreen
+    {
+        margin-top:60px; 
+        margin-bottom:30px
+    }
+
+    #progessSpinner
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #progressText
+    {
+        text-align: center;
+        font-size: 24px;
+    }
+
+@media only screen and (max-device-height : 390px)
+{
+    #conflictDiv
+    {
+        /*display: none;*/
+    }
+
+    #titleDiv 
+    {
+        /*margin: 20px 0px 20px 0px;*/
+        display: none;
+    }
+
+    .meetingstring
+    {
+        margin: 20px 0px 20px 0px;
+    }
+}
+
+@media only screen and (max-device-width : 351px)
+{
+    #whereDetails
+    {
+        width: 145px;
+    }
+}

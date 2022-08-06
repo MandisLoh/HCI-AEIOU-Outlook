@@ -1,32 +1,148 @@
 <!DOCTYPE html>
 <html>
-
+  
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="UTF-8"/>
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=10"> -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contoso Order Number Add-in</title>
-  <link href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.0.0/css/fabric.min.css" rel="stylesheet">
-  <link href="index.css" rel="stylesheet" type="text/css" />
 
-  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
-  <script src="index.js"></script>
-</head>
+  <link rel="StyleSheet" href="style/mailsuggestions.css" type="text/css">
+  <link rel="StyleSheet" href="style/suggestedmeetings.css" type="text/css">
 
+  <script type="text/javascript" src="../common/jquery-1.7.2.js"></script>
+  <script type="text/javascript" src="../common/microsoftajax.js"></script>
+  <script type="text/javascript" src="../en/microsoft.exchange.clients.owa2.client.extensionstrings.localized.min.js"></script>
+  <script type="text/javascript" src="../common/jquery.tmpl.min.js"></script>
+  <script type="text/javascript">
+    window.useAssociatedActionsOnly = true;
+  </script>
+  <script type="text/javascript" id="primaryOfficeJs" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script><script type="text/javascript" id="HOST" crossorigin="anonymous" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/outlook-win32-16.02.js"></script><script type="text/javascript" id="OFFICESTRINGS" crossorigin="anonymous" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/en-us/office_strings.js"></script>
+  <script type="text/javascript" src="../common/apps.common.js"></script>
+  <script type="text/javascript" src="../common/nlg.common.js"></script>
+  <script type="text/javascript" src="script/nlg.suggestedmeetings.js"></script>
+<script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/en-us/outlook_strings.js"></script><script type="text/javascript" crossorigin="anonymous" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/telemetry/oteljs_agave.js"></script></head>
 <body>
-  <div id="content-main" class="ms-Fabric">
-    <div id="error" class="ms-font-m ms-borderBase ms-borderColor-neutralTertiaryAlt ms-bgColor-error ms-fontColor-error">
-      <span class="icon ms-font-l"><i class="ms-Icon ms-Icon--Error" aria-hidden="true"></i></span>
-      <span class="ms-font-l ms-fontWeight-semibold">Error</span>
-      <pre><code id="error-msg"></code></pre>
-    </div>
-    <div id="entity-display">
-        <h2 class="ms-font-l">Selected match</h2>
-        <pre><code id="selected-match"></code></pre>
-        <h2 class="ms-font-l">All detected matches</h2>
-        <pre><code id="all-matches"></code></pre>
+  <div id="notificationMessage">
+    <div id="notificationMessageText"></div>
+  </div>
+  <div id="frameHost" style="position: relative; width: 100%; overflow: hidden; height: 100%;"><div id="currentFrame" style="position: relative; left: 0%; top: 0%; width: 100%; height: 100%; opacity: 1; transition: opacity 1000ms ease 0s;"><div id="backBtn" style="opacity: 1; display: none;">         <img id="backArrow" src="images/back-2x.png" width="32" height="32" alt="Back">       </div>         <div class="suggmContainer ms-font-color-neutralPrimary ms-font-m ms-font-weight-regular">                              <div id="titleDiv" class="formlegend dynamicitemform rowWidth appHeader">We think we've found an event</div>                 <div class="ms-font-weight-semibold ms-font-m ms-font-color-neutralPrimary rowWidth meetingstring">I want to schedule a meeting for next week.</div>                          <div class="actionsForm dynamicItemForm rowWidth">                 <div class="suggmDetails">                     <span class="ms-Icon--event "></span>                     <div class="suggmDetail">                         <div class="suggmRow">                             <label for="whenDetails" class="floatLeft eventLabel ms-font-weight-regular ms-font-color-neutralPrimary ms-font-m">When:</label>                             <p id="whenDetails" class="ms-font-weight-regular ms-font-color-neutralSecondary ms-font-m">                                                                      9:00 AM - 9:30 AM Monday, August 08, 2022                                                              </p>                          </div>                         <div class="suggmRow">                             <label for="whoDetails" class="floatLeft eventLabel ms-font-weight-regular ms-font-color-neutralPrimary ms-font-m">Who:</label>                             <p id="whoDetails" class="ms-font-weight-regular ms-font-color-neutralSecondary ms-font-m">                                 </p>                         </div>                         <div class="suggmRow ms-TextField">                             <label for="whereDetails" class="floatLeft eventLabel ms-font-weight-regular ms-font-color-neutralPrimary ms-font-m">Where:</label>                                                              <input id="whereDetails" type="text" class="ms-TextField-field" placeholder="Enter location" value="">                                                      </div>                     </div>                 </div>             </div>                              <div class="ms-font-s" id="conflictDiv">There are no conflicts with any events on your calendar.</div>                 <div class="buttonBar rowWidth ms-border-color-neutralLight">                     <div id="buttonDiv" class="suggmCol">                                                      <button id="sendInvitationButton" class="ms-Button ms-Button--primary">                                 <span class="ms-Button-label">Send invitation</span>                             </button>                             <button id="saveMeetingButton" class="ms-Button ms-Button--default">                                 <span class="ms-Button-label">Add to calendar</span>                             </button>                                              </div>                     <div id="editDetailsDiv" class="suggmCol">                         <a href="#" id="editMeetingDetailsButton" class="ms-font-weight-regular ms-font-color-primary ms-font-s noTextDecoration">Edit details</a>                     </div>                 </div>                      </div></div></div>
+
+  <div id="previousPageBtn">
+    <div class="pagingButton">
+      <img src="images/uparrow-2x.png" width="20" height="20" alt="${UIGlobals.strings.l_NLGCommonPreviousButtonAlt_Text}">
     </div>
   </div>
-</body>
-</html>
+  <div id="nextPageBtn">
+    <div class="pagingButton">
+      <img src="images/downarrow-2x.png" width="20" height="20" alt="${UIGlobals.strings.l_NLGCommonNextButtonAlt_Text}">
+    </div>
+  </div>
+
+  <script id="listControlTemplate" type="text/x-jquery-tmpl">  
+    <div id="itemListView">
+      <ul id="itemList" {{if UIGlobals.isPagingEnabled}}style="padding-right:35px;"{{/if}}></ul>
+    </div>
+  </script>
+  
+  <script id="introTemplate" type="text/x-jquery-tmpl">
+    <div id="introScreen">
+      <div id="introScreenText">${UIGlobals.strings.l_SuggestedMeetingsMultipleItemTitle_Text}</div>
+    </div>
+  </script>
+
+  <script id="meetingListItemTemplate" type="text/x-jquery-tmpl">
+    <li id="${index}">
+      <div class="itemFrame">
+        <div class="suggItemForwardArrowContainer">
+          <img src="images/forwardmini-2x.png" width="24" height="24" alt="${UIGlobals.strings.l_NLGCommonOpenButtonAlt_Text}"></img>
+        </div>
+        <div class="itemContent">
+          <div class="itemWrapBlock">
+            <span class="itemEllipsis">${meetingText}</span>
+          </div>
+        </div>
+      </div>
+    </li>
+  </script>
+
+  <script id="meetingItemFormTemplateDynamic" type="text/x-jquery-tmpl">
+    <div id="backBtn">
+      <img id="backArrow" src="images/back-2x.png" width="32" height="32" alt="${UIGlobals.strings.l_NLGCommonBackButtonAlt_Text}"></img>
+    </div>
+      <div class="suggmContainer ms-font-color-neutralPrimary ms-font-m ms-font-weight-regular">
+          {{if !hasBeenScheduled}}
+              <div id="titleDiv" class="formlegend dynamicitemform rowWidth appHeader">${UIGlobals.strings.l_SuggestedMeetingsSingleItemTitle_Text}</div>
+              <div class="ms-font-weight-semibold ms-font-m ms-font-color-neutralPrimary rowWidth meetingstring">${meetingText}</div>
+          {{else}}
+              <div class="formlegend dynamicitemform rowWidth appHeader scheduledText">${UIGlobals.strings.l_SuggestedMeetingsEventSecheduled_Text}</div>
+          {{/if}}
+          <div class="actionsForm dynamicItemForm rowWidth">
+              <div class="suggmDetails">
+                  <span class="ms-Icon--event "></span>
+                  <div class="suggmDetail">
+                      <div class="suggmRow" >
+                          <label for="whenDetails" class="floatLeft eventLabel ms-font-weight-regular ms-font-color-neutralPrimary ms-font-m">${UIGlobals.strings.l_SuggestedMeetingsWhen_Text}:</label>
+                          <p id="whenDetails" class="ms-font-weight-regular ms-font-color-neutralSecondary ms-font-m">
+                              {{if meetingRangeString != null && !isInPast}}
+                                  ${meetingRangeString}
+                              {{else}}
+                                  <b>${UIGlobals.strings.l_SuggestedMeetingsPastEvent_Text}</b>
+                              {{/if}}
+                          </p> 
+                      </div>
+                      <div class="suggmRow" >
+                          <label for="whoDetails" class="floatLeft eventLabel ms-font-weight-regular ms-font-color-neutralPrimary ms-font-m">${UIGlobals.strings.l_SuggestedMeetingsWho_Text}:</label>
+                          <p id="whoDetails" class="ms-font-weight-regular ms-font-color-neutralSecondary ms-font-m" >
+                              {{each attendees}}
+                                  {{if $value.displayName}}
+                                      ${$value.displayName}
+                                  {{else}}
+                                      ${$value.emailAddress}
+                                  {{/if}}
+                                  {{if $index < attendees.length-1}}, {{/if}}
+                              {{/each}}</p>
+                      </div>
+                      <div class="suggmRow ms-TextField">
+                          <label for="whereDetails" class="floatLeft eventLabel ms-font-weight-regular ms-font-color-neutralPrimary ms-font-m">${UIGlobals.strings.l_SuggestedMeetingsWhere_Text}:</label>
+                          {{if !hasBeenScheduled}}
+                              <input id="whereDetails" type="text" class="ms-TextField-field" placeholder="${UIGlobals.strings.l_SuggestedMeetingsEnterLocation_Text}" value="{{if location}}${location}{{/if}}" />
+                          {{else}}
+                              <div id="whereDetails" >${location}</div>
+                          {{/if}}
+                      </div>
+                  </div>
+              </div>
+          </div>
+          {{if !hasBeenScheduled}}
+              <div class="ms-font-s" id="conflictDiv" class="conflictDiv rowWidth ms-font-weight-regular ms-font-color-neutralPrimary ms-font-s"></div>
+              <div class="buttonBar rowWidth ms-border-color-neutralLight">
+                  <div id="buttonDiv" class="suggmCol">
+                      {{if canAutoSchedule}}
+                          <button id="sendInvitationButton" class="ms-Button ms-Button--primary">
+                              <span class="ms-Button-label">${UIGlobals.strings.l_SuggestedMeetingsSendInvitationButton_Text}</span>
+                          </button>
+                          <button id="saveMeetingButton" class="ms-Button ms-Button--default">
+                              <span class="ms-Button-label">${UIGlobals.strings.l_SuggestedMeetingsAddToCalendarButton_Text}</span>
+                          </button>
+                      {{else}}
+                          <div class=" ms-font-weight-regular ms-font-color-officeAccent6 ms-font-s">${UIGlobals.strings.l_SuggestedMeetingsUnableToSchedule_Text}</div>
+                      {{/if}}
+                  </div>
+                  <div id="editDetailsDiv" class="suggmCol">
+                      <a href="#" id="editMeetingDetailsButton" class="ms-font-weight-regular ms-font-color-primary ms-font-s noTextDecoration">${UIGlobals.strings.l_SuggestedMeetingsEditDetails_Text}</a>
+                  </div>
+              </div>
+          {{/if}}
+      </div>
+  </script>
+
+  <script id="progressScreenTemplate" type="text/x-jquery-tmpl">
+    <div id="progressScreen" class="rowWidth" >
+      <img id="progessSpinner" src="images/loading_spinner.gif" height="60" />
+    </div>
+    <div id="progressText" class="ms-font-weight-regular ms-font-color-neutralPrimary">${UIGlobals.strings.l_SuggestedMeetingsProgress_Text}</div>
+  </script>
+
+
+</body></html>

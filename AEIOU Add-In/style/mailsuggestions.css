@@ -1,0 +1,218 @@
+@font-face {
+    font-family:'Segoe WP';
+    src:url('../../common/fonts/resources/styles/segoeui-regular.eot?') format('embedded-opentype'), url('../../common/fonts/segoeui-regular.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family:'Segoe WP Light';
+    src:url('../../common/fonts/segoeui-semilight.eot?') format('embedded-opentype'), url('../../common/fonts/segoeui-semilight.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family:'Segoe WP Semibold';
+    src:url('../../common/fonts/segoeui-semibold.eot?') format('embedded-opentype'), url('../../common/fonts/segoeui-semibold.ttf') format('truetype');
+  }
+  body
+  {
+    font-family:'Segoe UI', 'Segoe WP', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color:#414141;
+    margin:0px; 
+    width:100%; 
+    overflow:hidden;
+    webkit-tap-highlight-color: rgba(0,0,0,0);
+    cursor:default;
+  }
+  #backArrow
+  {
+    display: block; 
+    float:left; 
+    top:0px; 
+    left:0px; 
+    float:left;
+    margin-right:2px;
+  }
+  #suggestionItemForm
+  {
+    margin:0px;
+  }
+  #itemList  li
+  {
+    list-style: none; 
+    margin-bottom:5px;
+    margin:0px 0px 6px 0px;
+    position:relative;
+  }
+  #itemListView
+  {
+    position:relative;
+    top:20px;
+    right:0px;
+    width:100%;
+    margin:0px;
+    padding:0px;
+    overflow:auto;
+  }
+  #previousPageBtn 
+  {
+    position:fixed; 
+    top:5px; 
+    right:5px; 
+    z-index:10;
+    cursor:pointer;
+    display:none; 
+    opacity:0;
+  }
+  #nextPageBtn 
+  {
+    position:fixed; 
+    bottom:5px; 
+    right:5px; 
+    z-index:10;
+    cursor:pointer;
+    display:none; 
+    opacity:0;
+  }
+  .itemText
+  {
+    color: #717171;
+    line-height: 1;
+  }
+  .actionsForm
+  {
+    padding:0px;
+    margin:5px 10px 0 55px;
+    padding-bottom:40px;
+  }
+  .itemContent
+  {
+    font-size:12px;
+    padding:3px 3px 3px 10px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    vertical-align:middle;
+  }
+  .itemWrapBlock
+  {
+    display:table-cell; 
+    height:34px;
+    max-height:34px;
+    vertical-align:middle;
+  }
+  .itemEllipsis
+  {
+    display:block;
+    padding-bottom:2px;
+    max-height:32px;
+    overflow:hidden;
+    line-height:16px;
+  }
+  .itemActionsFormHost
+  {
+    margin-left:20px; margin-bottom:5px;
+  }
+  .suggItemFormElem
+  {
+    margin-right: 5px;
+  }
+  #notificationMessage
+  {
+    position:fixed; 
+    z-index:100; 
+    background:white; 
+    opacity:0.75; 
+    text-align:center; 
+    width:100%; 
+    height:100%; 
+    display:none;
+  }
+  #notificationMessageText
+  {
+    font-weight:bold; 
+    height: 40px; 
+    margin-bottom: auto; 
+    margin-top: -20px; 
+    position: relative; 
+    text-align: center; 
+    top: 50%; 
+    vertical-align: middle;
+  }
+  #introScreen
+  {
+    position:absolute;
+    font-family: 'Segoe UI Light','Segoe WP Light';
+    height:100%;
+    width:100%;
+    text-align:center;
+    z-index:100;
+  }
+  #introScreenText
+  {
+    color: white;
+    font-size: 24px;
+    line-height: 24px;
+    margin-top: -12px;
+    position: absolute;
+    top: 50%;
+    vertical-align: middle;
+    width:100%;
+    text-align:center;
+  }
+  #suggIconContainer
+  {
+    position:absolute;
+    top:0px;
+    left:-55px;
+    height:100%;
+    width:60px;
+    display:none;
+    z-index:20;
+  }
+  .suggIconContainerExpanded
+  {
+    left:0px !important;
+  }
+  .suggIconContainerClosed
+  {
+    left:-55px !important;
+  }
+  #suggIcon
+  {
+    height: 48px;
+    margin-left: 6px;
+    margin-top: -24px;
+    position: relative;
+    top: 50%;
+    width: 48px;
+  }
+  #itemList
+  {
+    padding:0px;
+    margin:0px;
+    display: block;
+    padding-left:80px;
+    padding-right:20px;
+  }
+  @media all and (max-width: 499px)
+  {
+    .suggIconContainerExpanded
+    {
+      left:-55px !important;
+    }
+    #itemList
+     {
+      padding-left:25px;
+    }
+  }
+  /* although this is normally implied by the base classes, IE 9 has issues if we don't cover all ranges with media queries */
+  @media all and (min-width: 500px)
+  {
+    .suggIconContainerExpanded
+    {
+      left:0px !important;
+    }
+    #itemList
+     {
+      padding-left:80px;
+    }
+  }
