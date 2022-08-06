@@ -1,4 +1,8 @@
 {
+
+  "browser": {
+    "child_process": false
+  },
   "name": "office-addin-taskpane-js",
   "version": "0.0.1",
   "repository": {

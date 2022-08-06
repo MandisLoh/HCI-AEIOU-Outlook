@@ -23,6 +23,25 @@ export async function run() {
     "text",
     { asyncContext: "This is passed to the callback" },
     function callback(result) {
+                
+        const spawn = require('child_process').spawn;
+        const script = spawn('py', ['ml copy 2.py', result.value]);
+        console.log(result.value)
+
+        script.stdout.on('data', (data) => {
+            // datatoSend = data.toString();
+            console.log(`${data}`)
+        });
+        script.stderr.on('data', (data) => {
+            // As said before, convert the Uint8Array to a readable string.
+            console.error(`stderr: ${data}`);
+        });
+
+        script.on('close', (code) => {
+            console.log("Process quit with code : " + code);
+            // res.send(datatoSend);
+        });
+
         document.getElementById("item-subject").innerHTML = "<b>Subject:</b> <br/>" + result.value;
         
         // Put in model to use the result.value
@@ -36,7 +55,7 @@ export async function run() {
         Office.context.mailbox.displayNewAppointmentForm({
           start: start,
           end: end,
-          location: "Home",
+          location: "",
           subject: "meeting",
           body: result.value
         });
