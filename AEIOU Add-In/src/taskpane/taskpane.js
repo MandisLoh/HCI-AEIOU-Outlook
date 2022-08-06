@@ -24,23 +24,51 @@ export async function run() {
     { asyncContext: "This is passed to the callback" },
     function callback(result) {
                 
-        const spawn = require('child_process').spawn;
-        const script = spawn('py', ['ml copy 2.py', result.value]);
-        console.log(result.value)
+        // const spawn = require('child_process').spawn;
+        // const script = spawn('py', ['ml copy 2.py', result.value]);
+        // console.log(result.value)
 
-        script.stdout.on('data', (data) => {
-            // datatoSend = data.toString();
-            console.log(`${data}`)
-        });
-        script.stderr.on('data', (data) => {
-            // As said before, convert the Uint8Array to a readable string.
-            console.error(`stderr: ${data}`);
+        // script.stdout.on('data', (data) => {
+        //     // datatoSend = data.toString();
+        //     console.log(`${data}`)
+        // });
+        // script.stderr.on('data', (data) => {
+        //     // As said before, convert the Uint8Array to a readable string.
+        //     console.error(`stderr: ${data}`);
+        // });
+
+        // script.on('close', (code) => {
+        //     console.log("Process quit with code : " + code);
+        //     // res.send(datatoSend);
+        // });
+
+        // Setting up tfjs with the model we downloaded
+        tf.loadLayersModel('model.json')
+        .then(function (model) {
+            window.model = model;
+            console.log("window model")
         });
 
-        script.on('close', (code) => {
-            console.log("Process quit with code : " + code);
-            // res.send(datatoSend);
-        });
+        // Predict function
+        let predicted = 0;
+        var predict = function (input) {
+        if (window.model) {
+            window.model.predict([tf.tensor(input)
+                .reshape([1, 28, 28, 1])])
+                .array().then(function (scores) {
+                    scores = scores[0];
+                    predicted = scores
+                        .indexOf(Math.max(...scores));
+                    $('#number').html(predicted);
+                    console.log(predicted)
+                });
+        } else {
+
+            // The model takes a bit to load, 
+            // if we are too fast, wait
+            setTimeout(function () { predict(input) }, 50);
+        }
+        }
 
         document.getElementById("item-subject").innerHTML = "<b>Subject:</b> <br/>" + result.value;
         
@@ -56,7 +84,7 @@ export async function run() {
           start: start,
           end: end,
           location: "",
-          subject: "meeting",
+          subject: "",
           body: result.value
         });
         //else{document.getElementById("item-subject").innerHTML = Not a meeting!}
