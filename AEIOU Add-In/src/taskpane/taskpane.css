@@ -9,6 +9,7 @@
      height: 100%;
      margin: 0;
      padding: 0;
+     
  }
  
  ul {
@@ -17,14 +18,15 @@
  }
  
  .ms-welcome__header {
-    padding: 20px;
-    padding-bottom: 30px;
-    padding-top: 100px;
+    /* padding: 20px; */
+    /* padding-bottom: 30px;
+    padding-top: 100px; */
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;
     flex-direction: column;
     align-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
  }
 
  .ms-welcome__main {
@@ -39,6 +41,7 @@
     -webkit-flex: 1 0 0;
     flex: 1 0 0;
     padding: 10px 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
  }
  
  .ms-welcome__main > h2 {
