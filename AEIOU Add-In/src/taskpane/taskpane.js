@@ -49,20 +49,7 @@ export async function run() {
         var returned_prediction = xmlHttp.responseText;
         console.log(returned_prediction);
         
-        // if (returned_prediction = {"Prediction":"Meeting"}) {
-        // const start = new Date();
-        // const end = new Date();
-        // end.setHours(start.getHours() + 1);
-        // Office.context.mailbox.displayNewAppointmentForm({
-        //         start: start,
-        //         end: end,
-        //         location: "",
-        //         subject: Office.context.mailbox.item.subject,
-        //         body: result.value
-        //       })}         
 
-        // else {document.getElementById("item-subject").innerHTML = "Not a meeting!"}
-        //   ; }
 
         if (returned_prediction == "0") {
           document.getElementById("item-subject").innerHTML = "Not a meeting!"
