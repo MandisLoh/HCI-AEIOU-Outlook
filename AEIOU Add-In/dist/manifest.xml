@@ -6,8 +6,8 @@
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="AEIOU Add-In"/>
   <Description DefaultValue="A template to get started."/>
-  <IconUrl DefaultValue="https://www.contoso.com/assets/icon-64.png"/>
-  <HighResolutionIconUrl DefaultValue="https://www.contoso.com/assets/icon-128.png"/>
+  <IconUrl DefaultValue="https://aeiou.z13.web.core.windows.net//assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://aeiou.z13.web.core.windows.net//assets/icon-128.png"/>
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>
   <AppDomains>
     <AppDomain>https://www.contoso.com</AppDomain>
@@ -23,7 +23,7 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://www.contoso.com/taskpane.html"/>
+        <SourceLocation DefaultValue="https://aeiou.z13.web.core.windows.net//taskpane.html"/>
         <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
     </Form>
@@ -108,24 +108,24 @@
     </Hosts>
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon.16x16" DefaultValue="https://www.contoso.com/assets/icon-16.png"/>
-        <bt:Image id="Icon.32x32" DefaultValue="https://www.contoso.com/assets/icon-32.png"/>
-        <bt:Image id="Icon.80x80" DefaultValue="https://www.contoso.com/assets/icon-80.png"/>
+        <bt:Image id="Icon.16x16" DefaultValue="https://aeiou.z13.web.core.windows.net//assets/icon-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://aeiou.z13.web.core.windows.net//assets/icon-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://aeiou.z13.web.core.windows.net//assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="Commands.Url" DefaultValue="https://www.contoso.com/commands.html" />
-        <bt:Url id="Taskpane.Url" DefaultValue="https://www.contoso.com/taskpane.html" />
-        <bt:Url id="WebViewRuntime.Url" DefaultValue="https://www.contoso.com/commands.html" />
+        <bt:Url id="Commands.Url" DefaultValue="https://aeiou.z13.web.core.windows.net//commands.html" />
+        <bt:Url id="Taskpane.Url" DefaultValue="https://aeiou.z13.web.core.windows.net//taskpane.html" />
+        <bt:Url id="WebViewRuntime.Url" DefaultValue="https://aeiou.z13.web.core.windows.net//commands.html" />
         <!-- Entry needed for Outlook Desktop. -->
-        <bt:Url id="JSRuntime.Url" DefaultValue="https://www.contoso.com/launchevent.js" />
+        <bt:Url id="JSRuntime.Url" DefaultValue="https://aeiou.z13.web.core.windows.net//launchevent.js" />
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GroupLabel" DefaultValue="Contoso Add-in"/>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Taskpane"/>
+        <bt:String id="GroupLabel" DefaultValue="AEIOU Add-in"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Add to Calendar"/>
         <bt:String id="ActionButton.Label" DefaultValue="Perform an action"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Opens a pane displaying all available properties."/>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Start adding to calendar now!"/>
         <bt:String id="ActionButton.Tooltip" DefaultValue="Perform an action when clicked."/>
       </bt:LongStrings>
     </Resources>
