@@ -38,7 +38,7 @@ function onMessageSendHandler(event) {
       return false;
     }
   
-    const arrayOfTerms = ["meeting", "meet", "meets", "magic"];
+    const arrayOfTerms = ["send", "picture", "document", "attachment"];
     for (let index = 0; index < arrayOfTerms.length; index++) {
       const term = arrayOfTerms[index].trim();
       const regex = RegExp(term, 'i');
@@ -60,9 +60,9 @@ function onMessageSendHandler(event) {
         }
       }
   
-      event.completed({ allowEvent: false, errorMessage: "Looks like you're sending a meeting invite! Have you saved it to calendar?" });
+      event.completed({ allowEvent: false, errorMessage: "Looks like you forgot to include an attachment?" });
     } else {
-      event.completed({ allowEvent: false, errorMessage: "Looks like you're sending a meeting invite! Have you saved it to calendar?" });
+      event.completed({ allowEvent: false, errorMessage: "Looks like you're forgetting to include an attachment?" });
     }
   }
   
