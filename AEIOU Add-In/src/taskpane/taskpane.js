@@ -4,7 +4,7 @@
  */
 
 /* global document, Office */
-
+import {date,parseTime,time,formatDate} from "./dateTimeList.js"
 
 
 
@@ -17,8 +17,6 @@ Office.onReady((info) => {
 });
 
 export async function run() {
-  
-
 
   Office.context.mailbox.item.body.getAsync(
     "text",
@@ -27,17 +25,18 @@ export async function run() {
         document.getElementById("item-subject").innerHTML = "<b>Body:</b> <br/>" + result.value;
         var input = result.value;
         console.log(input);
-
+        console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
         // remove all punctuation
         var replaced = input.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()""]/g," ");
         console.log(replaced);
         // changes the consecutive empty spaces into only 1 empty space
         var replaced1 = replaced.replace(/\s{2,}/g,' ');
         console.log(replaced1);
+        
         // replace empty space with +
         var replaced2 = replaced1.slice(0, -1).split(' ').join('+') + replaced1.slice(-1);
         console.log(replaced2);
-       
+        
         // heroku website
         var predicted = 'https://outlook-addin-aeiou.herokuapp.com/predict?textbody=' + replaced2.toLowerCase() ;
         console.log(predicted) ;
@@ -47,21 +46,96 @@ export async function run() {
         xmlHttp.open( "GET", predicted, false ); // false for synchronous request
         xmlHttp.send( null );
         var returned_prediction = xmlHttp.responseText;
-        console.log(returned_prediction);
-        
+        console.log(`this is the predicted return:`);
+        //Initialize variables for extraction of date/time
+        let listOfDates = date()
+        let listOfTime = time()
+        let startDate;
+        let startTime;
+        let endTime;
+        let startTimeHour;
+        let startTimeMin;
+        let endTimeHour;
+        let endTimeMin;
+        //Extract date
+        console.log(input.toLowerCase())
+        for(let i=0;i<listOfDates.length;i++){
+          if(input.toLowerCase().includes(listOfDates[i].toLowerCase())){
+            startDate = listOfDates[i].toLowerCase()
+            break
+          }
+        }
+        if (!startDate.includes("-")&&!startDate.includes("/")){
+          startDate = startDate.replace("th","")
+          startDate = startDate.replace("1st","")
+          startDate = startDate.replace("3rd","")
+          startDate = startDate.replace("2nd","")
+          startDate+=" 2022"
+        } else{
+          startDate = formatDate(startDate)
+        }
+        console.log(startDate)
+        console.log(input.toLowerCase().includes("3pm"))
+        let position = 0;
+        //Extract Time
+        for(let i=0;i<listOfTime.length;i++){
+          
+          if(listOfTime[i].toLowerCase()==="3pm"){
+            console.log("found 3pm")
+          }
+          if(input.toLowerCase().includes(listOfTime[i].toLowerCase())&&position===0){
+            startTime = listOfTime[i].toLowerCase()
+            position+=1
+            console.log(startTime,position)
+          } else if(input.toLowerCase().includes(listOfTime[i].toLowerCase())&&position===1){
+            endTime = listOfTime[i].toLowerCase()
+            break
+          }
+        }
+        // let allLenOfTime=[];
+        // for(let i=0;i<listOfTime.length;i++){
+        //   if(!allLenOfTime.includes(listOfTime[i].length)){
+        //     allLenOfTime.push(listOfTime[i].length)
+        //     console.log(listOfTime[i])
+        //   }
+        // }
+        // console.log(allLenOfTime)
 
+        console.log(startTime)
+        console.log(endTime)
+        if(!endTime){
+          endTime = startTime
+        }
+        console.log("Here")
+        let parseStartTime = parseTime(startTime)
+        let parseEndTime = parseTime(endTime)
+        startTimeHour = parseStartTime.hour 
+        startTimeMin = parseStartTime.min 
+        endTimeHour = parseEndTime.hour 
+        endTimeMin = parseEndTime.min 
+
+        //If endTime not found, assume +1 Hour
+        if(startTimeHour===endTimeHour&&startTimeMin===endTimeMin){
+          endTimeHour+=1
+          console.log(endTimeHour)
+        }
+        
 
         if (returned_prediction == "0") {
           document.getElementById("item-subject").innerHTML = "Not a meeting!"
         }
         else {
           document.getElementById("item-subject").innerHTML = "Meeting detected!"
-          const start = new Date();
-          const end = new Date();
-          end.setHours(start.getHours() + 1);
+          const meetingDate = new Date(startDate);
+          console.log(new Date("2/1"))
+          const endDate = new Date(startDate);
+          meetingDate.setHours(startTimeHour);
+          meetingDate.setMinutes(startTimeMin);
+          endDate.setHours(endTimeHour)
+          endDate.setMinutes(endTimeMin)
           Office.context.mailbox.displayNewAppointmentForm({
-                  start: start,
-                  end: end,
+                  start: meetingDate,
+                  end: endDate,
                   location: "",
                   subject: Office.context.mailbox.item.subject,
                   body: result.value
