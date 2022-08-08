@@ -22,10 +22,10 @@ export async function run() {
     "text",
     { asyncContext: "This is passed to the callback" },
     function callback(result)  {
-        document.getElementById("item-subject").innerHTML = "<b>Body:</b> <br/>" + result.value;
+      document.getElementById("item-subject").innerHTML = "Not a meeting!";
         var input = result.value;
         console.log(input);
-        console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+
         // remove all punctuation
         var replaced = input.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()""]/g," ");
         console.log(replaced);
@@ -79,10 +79,6 @@ export async function run() {
         let position = 0;
         //Extract Time
         for(let i=0;i<listOfTime.length;i++){
-          
-          if(listOfTime[i].toLowerCase()==="3pm"){
-            console.log("found 3pm")
-          }
           if(input.toLowerCase().includes(listOfTime[i].toLowerCase())&&position===0){
             startTime = listOfTime[i].toLowerCase()
             position+=1
@@ -92,14 +88,6 @@ export async function run() {
             break
           }
         }
-        // let allLenOfTime=[];
-        // for(let i=0;i<listOfTime.length;i++){
-        //   if(!allLenOfTime.includes(listOfTime[i].length)){
-        //     allLenOfTime.push(listOfTime[i].length)
-        //     console.log(listOfTime[i])
-        //   }
-        // }
-        // console.log(allLenOfTime)
 
         console.log(startTime)
         console.log(endTime)
@@ -127,7 +115,6 @@ export async function run() {
         else {
           document.getElementById("item-subject").innerHTML = "Meeting detected!"
           const meetingDate = new Date(startDate);
-          console.log(new Date("2/1"))
           const endDate = new Date(startDate);
           meetingDate.setHours(startTimeHour);
           meetingDate.setMinutes(startTimeMin);

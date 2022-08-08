@@ -2,16 +2,12 @@
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="MailApp">
   <Id>2de7af86-bc9e-4570-9cda-105926c3c2d2</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>Contoso</ProviderName>
+  <ProviderName>SUTD HCI Team 6 Mandis and Jared</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="AEIOU Add-In"/>
-  <Description DefaultValue="A template to get started."/>
-  <IconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
-  <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-128.png"/>
-  <!-- <SupportUrl DefaultValue="https://www.contoso.com/help"/> -->
-  <!-- <AppDomains>
-    <AppDomain>https://www.contoso.com</AppDomain>
-  </AppDomains> -->
+  <Description DefaultValue="By creating a machine learning model that is able to sieve out information, such as time and date from texts, our solution aims to assist users in adding events into the calendar in a simple manner."/>
+  <IconUrl DefaultValue="https://aeiou.z13.web.core.windows.net/assets/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://aeiou.z13.web.core.windows.net/assets/icon-128.png"/>
   <Hosts>
     <Host Name="Mailbox"/>
   </Hosts>
@@ -23,7 +19,7 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://localhost:3000/taskpane.html"/>
+        <SourceLocation DefaultValue="https://aeiou.z13.web.core.windows.net/taskpane.html"/>
         <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
     </Form>
@@ -108,16 +104,16 @@
     </Hosts>
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon.16x16" DefaultValue="https://localhost:3000/assets/icon-16.png"/>
-        <bt:Image id="Icon.32x32" DefaultValue="https://localhost:3000/assets/icon-32.png"/>
-        <bt:Image id="Icon.80x80" DefaultValue="https://localhost:3000/assets/icon-80.png"/>
+        <bt:Image id="Icon.16x16" DefaultValue="https://aeiou.z13.web.core.windows.net/assets/icon-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://aeiou.z13.web.core.windows.net/assets/icon-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://aeiou.z13.web.core.windows.net/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html" />
-        <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html" />
-        <bt:Url id="WebViewRuntime.Url" DefaultValue="https://localhost:3000/commands.html" />
+        <bt:Url id="Commands.Url" DefaultValue="https://aeiou.z13.web.core.windows.net/commands.html" />
+        <bt:Url id="Taskpane.Url" DefaultValue="https://aeiou.z13.web.core.windows.net/taskpane.html" />
+        <bt:Url id="WebViewRuntime.Url" DefaultValue="https://aeiou.z13.web.core.windows.net/commands.html" />
         <!-- Entry needed for Outlook Desktop. -->
-        <bt:Url id="JSRuntime.Url" DefaultValue="https://localhost:3000/launchevent.js" />
+        <bt:Url id="JSRuntime.Url" DefaultValue="https://aeiou.z13.web.core.windows.net/launchevent.js" />
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GroupLabel" DefaultValue="AEIOU Add-in"/>
