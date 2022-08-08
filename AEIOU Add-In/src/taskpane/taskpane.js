@@ -75,7 +75,7 @@ export async function run() {
           startDate = formatDate(startDate)
         }
         console.log(startDate)
-        console.log(input.toLowerCase().includes("3pm"))
+        console.log(input.toLowerCase().includes("8 aug") + "hello")
         let position = 0;
         //Extract Time
         for(let i=0;i<listOfTime.length;i++){
@@ -107,7 +107,7 @@ export async function run() {
           endTimeHour+=1
           console.log(endTimeHour)
         }
-        
+        console.log("final" + startTimeHour)
 
         if (returned_prediction == "0") {
           document.getElementById("item-subject").innerHTML = "Not a meeting!"
